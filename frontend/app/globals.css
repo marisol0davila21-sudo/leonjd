@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Paleta principal */
+  --color-cream-50: #fdfaf5;
+  --color-cream-100: #f7f0e4;
+  --color-cream-200: #ede0c4;
+  --color-cream-300: #dfc9a0;
+
+  --color-gold-400: #c9a84c;
+  --color-gold-500: #b8922e;
+  --color-gold-600: #9a7824;
+
+  --color-dark-900: #111111;
+  --color-dark-800: #1a1a1a;
+  --color-dark-700: #242424;
+  --color-dark-600: #2e2e2e;
+  --color-dark-500: #3d3d3d;
+
+  --color-stone-text: #5c4f3a;
+  --color-stone-muted: #8c7d68;
+
+  /* Tipografía */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Montserrat", sans-serif;
+
+  /* Radios */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  :root {
+    --bg-main: var(--color-cream-50);
+    --bg-card: #ffffff;
+    --bg-accent: var(--color-cream-100);
+    --text-main: #111111;
+    --text-muted: #5c4f3a;
+    --text-dim: #8c7d68;
+    --border-main: var(--color-cream-200);
+  }
+
+  :root.dark {
+    --bg-main: #0c0d10;
+    --bg-card: #15171c;
+    --bg-accent: #1e2128;
+    --text-main: #fdfaf5;
+    --text-muted: #a0a8b8;
+    --text-dim: #64748b;
+    --border-main: #2d313a;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-family: var(--font-display);
+  }
+
+  .text-body {
+    font-family: var(--font-body);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #c9a84c 0%, #e8c96d 50%, #b8922e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #c9a84c 0%, #e8c96d 50%, #b8922e 100%);
+  }
+
+  .glass-dark {
+    background: rgba(17, 17, 17, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  .glass-cream {
+    background: rgba(253, 250, 245, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  .section-pad {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-pad {
+      padding-top: 5.5rem;
+      padding-bottom: 5.5rem;
+    }
+  }
+
+  .container-main {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-main {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Animación subtle de entrada */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-6px); }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .bg-mesh {
+    background-color: transparent;
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(45, 77%, 54%, 0.05) 0, transparent 50%), 
+      radial-gradient(at 50% 0%, hsla(45, 77%, 54%, 0.03) 0, transparent 50%), 
+      radial-gradient(at 100% 0%, hsla(45, 77%, 54%, 0.05) 0, transparent 50%);
+  }
+
+  .dark .bg-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(45, 77%, 54%, 0.1) 0, transparent 50%), 
+      radial-gradient(at 50% 0%, hsla(45, 77%, 54%, 0.05) 0, transparent 50%), 
+      radial-gradient(at 100% 0%, hsla(45, 77%, 54%, 0.1) 0, transparent 50%);
+  }
+}
