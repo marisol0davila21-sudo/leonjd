@@ -32,7 +32,7 @@ export default function FeedbackForm({ onAddTestimonial }: FeedbackFormProps) {
           name,
           text: message,
           stars: rating,
-          image: gender === 'M' ? '/images/Hero/Avatar (M).webp' : '/images/Hero/Avatar (H).webp',
+          image: gender === 'M' ? '/images/hero/avatar-m.webp' : '/images/hero/avatar-h.webp',
           role: 'Cliente',
           event: 'Opinión Web'
         }),

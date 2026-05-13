@@ -6,13 +6,13 @@ import { CheckCircle2, Sparkles, Clock, Award, Users, ShieldCheck, History } fro
 import Image from 'next/image'
 
 const GALLERY_IMAGES = [
-  { src: '/images/Hombre/CumpleañosH.webp', alt: 'Cumpleaños para Hombre' },
-  { src: '/images/Mujer/CumpleañosM.webp', alt: 'Cumpleaños para Mujer' },
-  { src: '/images/Hombre/BautizoparaH.webp', alt: 'Bautizo para Niño' },
-  { src: '/images/Mujer/BautizoM.webp', alt: 'Bautizo para Niña' },
-  { src: '/images/Hombre/BabyshowerH.webp', alt: 'Babyshower para niño' },
-  { src: '/images/Mujer/BabyshowerM.webp', alt: 'Babyshower Especial' },
-  { src: '/images/Hombre/Matrimonio.webp', alt: 'Recuerdos de Matrimonio' },
+  { src: '/images/hombre/cumpleanosh.webp', alt: 'Cumpleaños para Hombre' },
+  { src: '/images/mujer/cumpleanosm.webp', alt: 'Cumpleaños para Mujer' },
+  { src: '/images/hombre/bautizoparah.webp', alt: 'Bautizo para Niño' },
+  { src: '/images/mujer/bautizom.webp', alt: 'Bautizo para Niña' },
+  { src: '/images/hombre/babyshowerh.webp', alt: 'Babyshower para niño' },
+  { src: '/images/mujer/babyshowerm.webp', alt: 'Babyshower Especial' },
+  { src: '/images/hombre/matrimonio.webp', alt: 'Recuerdos de Matrimonio' },
 ]
 
 function StackedCarousel() {
