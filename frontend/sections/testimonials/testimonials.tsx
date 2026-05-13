@@ -75,6 +75,8 @@ export default function Testimonials({ externalTestimonials = [] }: Testimonials
             }));
             setItems([...INITIAL_TESTIMONIALS, ...formatted]);
           }
+        } else {
+          console.warn('Testimonials API returned non-ok status:', response.status);
         }
       } catch (error) {
         console.error('Fetch Testimonials Error:', error);

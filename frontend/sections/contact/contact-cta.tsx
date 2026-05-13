@@ -68,22 +68,6 @@ export default function ContactCTA() {
 
             {/* Info cards & Image Decoration */}
             <div className="flex flex-col gap-8">
-              {/* Decorative Image for Contact */}
-              <div className="hidden lg:block relative h-48 w-full rounded-[32px] overflow-hidden border border-[#ede0c4] dark:border-white/10 group">
-                <Image 
-                  src="/images/Hombre/Matrimonio.webp" 
-                  alt="Decoración de eventos" 
-                  fill 
-                  sizes="(max-width: 1200px) 0px, 400px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
-                  <p className="text-white text-xs font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    Calidad que perdura
-                  </p>
-                </div>
-              </div>
-
               <div className="flex flex-col gap-4">
                 {[
                   {
