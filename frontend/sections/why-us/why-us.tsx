@@ -71,6 +71,13 @@ function StackedCarousel() {
           const isVisible = Math.abs(dist) <= 1
           const pos = dist === 0 ? 'center' : dist === 1 ? 'right' : dist === -1 ? 'left' : 'hidden'
 
+          // Clean path for URL safety
+          const sanitizedSrc = img.src
+            .toLowerCase()
+            .replace(/ñ/g, 'n')
+            .replace(/ /g, '-')
+            .replace(/[()]/g, '');
+
           return (
             <motion.div
               key={img.src}
@@ -90,7 +97,7 @@ function StackedCarousel() {
               className="absolute w-[180px] h-[260px] md:w-[220px] md:h-[320px] rounded-[40px] overflow-hidden border-[6px] border-white dark:border-stone-800 shadow-2xl"
             >
               <Image
-                src={img.src}
+                src={sanitizedSrc}
                 alt={img.alt}
                 fill
                 sizes="(max-width: 768px) 180px, 220px"

@@ -63,7 +63,16 @@ export default function Testimonials({ externalTestimonials = [] }: Testimonials
         if (response.ok) {
           const dbTestimonials = await response.json();
           if (dbTestimonials.length > 0) {
-            // Convert DB fields if necessary (stars -> stars, text -> content, etc.)
+            // Helper to clean paths coming from DB or code
+            const sanitizePath = (path: string) => {
+              if (!path) return '';
+              return path
+                .toLowerCase()
+                .replace(/ñ/g, 'n')
+                .replace(/ /g, '-')
+                .replace(/[()]/g, '');
+            };
+
             const formatted = dbTestimonials.map((t: any) => ({
               id: t._id,
               name: t.name,
@@ -71,9 +80,15 @@ export default function Testimonials({ externalTestimonials = [] }: Testimonials
               event: t.event,
               stars: t.rating || t.stars,
               text: t.content || t.text,
-              image: t.avatar || t.image
+              image: sanitizePath(t.avatar || t.image)
             }));
-            setItems([...INITIAL_TESTIMONIALS, ...formatted]);
+            
+            const sanitizedInitial = INITIAL_TESTIMONIALS.map(t => ({
+              ...t,
+              image: sanitizePath(t.image)
+            }));
+
+            setItems([...sanitizedInitial, ...formatted]);
           }
         } else {
           console.warn('Testimonials API returned non-ok status:', response.status);
