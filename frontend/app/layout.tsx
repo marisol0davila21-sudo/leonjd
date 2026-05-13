@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "León de Judá",
+  title: "León de Judá | Impresiones Gráficas",
   description:
     "Especialistas en impresiones personalizadas, recuerdos para bautizos, comuniones, fotografía fine art y souvenirs premium. Hecho con amor en Perú.",
   icons: {
@@ -41,13 +41,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="es" className={`${playfair.variable} ${montserrat.variable}`} suppressHydrationWarning>
-      <head>
+    <html
+      lang="es"
+      className={`${playfair.variable} ${montserrat.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-screen flex flex-col antialiased">
         <script
+          id="theme-checker"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -65,8 +70,8 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="min-h-screen flex flex-col antialiased">{children}</body>
+        {children}
+      </body>
     </html>
   );
 }

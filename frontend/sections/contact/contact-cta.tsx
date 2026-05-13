@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Clock, Phone } from 'lucide-react'
+import Image from 'next/image'
 
 // Custom WhatsApp Icon SVG
 const WhatsAppIcon = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
