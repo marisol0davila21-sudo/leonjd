@@ -23,7 +23,7 @@ const INITIAL_TESTIMONIALS: TestimonialType[] = [
     event: 'Recuerdos de Bautizo',
     stars: 5,
     text: 'Los recuerdos para el bautizo de mi hija quedaron preciosos. Se nota la dedicación en cada detalle elaborado y la elegancia del acabado.',
-    image: '/images/testimonios/Icon (1).webp',
+    image: '/images/testimonios/icon-1.webp',
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const INITIAL_TESTIMONIALS: TestimonialType[] = [
     event: 'Impresión UV Rígida',
     stars: 5,
     text: 'La impresión UV sobre MDF para nuestra señalización superó las expectativas. Los colores son vivos y la calidad del material es excepcional.',
-    image: '/images/testimonios/Icon (2).webp',
+    image: '/images/testimonios/icon-2.webp',
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const INITIAL_TESTIMONIALS: TestimonialType[] = [
     event: 'Imanes Turísticos',
     stars: 5,
     text: 'Compré una colección de imanes turísticos y a mis clientes les encantan. Diseños únicos y coleccionables con una nitidez impresionante.',
-    image: '/images/testimonios/Icon (3).webp',
+    image: '/images/testimonios/icon-3.webp',
   },
 ]
 
