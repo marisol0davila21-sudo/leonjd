@@ -1,16 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Phone, Sun, Moon } from 'lucide-react'
+import { Menu, X, Phone, Sun, Moon, ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 
 const NAV_LINKS = [
-  { label: 'Inicio',     href: '#inicio' },
-  { label: 'Servicios',  href: '#servicios' },
-  { label: 'Proceso',    href: '#proceso' },
-  { label: 'Galería',    href: '#galeria' },
-  { label: 'Testimonios',href: '#testimonios' },
-  { label: 'Contacto',   href: '#contacto' },
+  { label: 'Inicio',     href: '/' },
+  { label: 'Servicios',  href: '/#servicios' },
+  { label: 'Proceso',    href: '/#proceso' },
+  { label: 'Galería',    href: '/#galeria' },
+  { label: 'Testimonios',href: '/#testimonios' },
+  { label: 'Contacto',   href: '/#contacto' },
 ]
 
 export default function Navbar() {
@@ -22,9 +22,8 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
     
-    if (document.documentElement.classList.contains('dark')) {
-      setIsDark(true)
-    }
+    // Sync state with the actual class present on the document
+    setIsDark(document.documentElement.classList.contains('dark'))
     
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -32,7 +31,13 @@ export default function Navbar() {
   const toggleTheme = () => {
     const newTheme = !isDark
     setIsDark(newTheme)
-    document.documentElement.classList.toggle('dark')
+    if (newTheme) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
   }
 
   return (
@@ -45,12 +50,13 @@ export default function Navbar() {
         }`}
       >
         {/* Logo */}
-        <a href="#inicio" className="flex items-center gap-3 group shrink-0">
-          <div className="relative w-10 h-10 overflow-hidden rounded-full border-2 border-gold-gradient group-hover:scale-110 transition-transform duration-300">
+        <a href="/" className="flex items-center gap-3 group shrink-0">
+          <div className="relative w-10 h-10 overflow-hidden rounded-full border-2 border-[#e8c96d] group-hover:scale-110 transition-transform duration-300">
             <Image 
               src="/images/logo.webp" 
               alt="León de Judá Logo" 
               fill 
+              sizes="40px"
               className="object-cover"
             />
           </div>
@@ -75,7 +81,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
@@ -96,7 +102,7 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:block">
             <a
-              href="https://wa.me/51981451159"
+              href="https://wa.me/51906455032"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-sm font-bold px-6 py-2 rounded-full hover:bg-[#e8c96d] hover:text-black dark:hover:bg-white active:scale-95 transition-all duration-300"
@@ -105,42 +111,51 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Menu Trigger - REDESIGNED */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800 text-[var(--text-main)]"
+            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 border-2 ${
+              menuOpen 
+                ? 'bg-[#1a1a1a] dark:bg-[#e8c96d] border-[#e8c96d] text-[#e8c96d] dark:text-black' 
+                : 'bg-white dark:bg-black/20 border-[#ede0c4] dark:border-white/10 text-[var(--text-main)]'
+            }`}
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu - Now in a matching style */}
+      {/* Mobile Menu - REDESIGNED */}
       <div 
-        className={`lg:hidden absolute top-24 left-4 right-4 bg-white/95 dark:bg-black/95 backdrop-blur-xl rounded-[32px] border border-white/10 transition-all duration-300 overflow-hidden ${
-          menuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible h-0'
+        className={`lg:hidden absolute top-24 left-4 right-4 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl rounded-[32px] border border-[#ede0c4] dark:border-white/10 transition-all duration-500 overflow-hidden shadow-2xl ${
+          menuOpen ? 'opacity-100 translate-y-0 visible max-h-[500px]' : 'opacity-0 -translate-y-4 invisible max-h-0'
         }`}
       >
-        <div className="p-8 flex flex-col gap-6">
+        <div className="p-8 flex flex-col gap-5">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-body text-lg font-bold text-[var(--text-main)] hover:text-[#c9a84c] transition-colors"
+              className="text-display text-xl font-bold text-[var(--text-main)] hover:text-[#c9a84c] transition-colors flex items-center justify-between group"
             >
               {link.label}
+              <div className="w-8 h-8 rounded-full border border-[#ede0c4] dark:border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                <ChevronLeft size={14} className="rotate-180 text-[#c9a84c]" />
+              </div>
             </a>
           ))}
-          <a
-            href="https://wa.me/51981451159"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-center gap-2 bg-gold-gradient text-black text-body text-base font-bold py-4 rounded-2xl"
-          >
-            <Phone size={18} />
-            Contactanos
-          </a>
+          <div className="pt-4 border-t border-[#ede0c4] dark:border-white/5 mt-2">
+            <a
+              href="https://wa.me/51906455032"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-base font-bold py-4 rounded-2xl active:scale-95 transition-all"
+            >
+              <Phone size={18} />
+              Solicitar Cotización
+            </a>
+          </div>
         </div>
       </div>
     </header>
