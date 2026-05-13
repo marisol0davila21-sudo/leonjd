@@ -15,6 +15,17 @@ export interface TestimonialType {
   image: string
 }
 
+// Helper to clean paths coming from DB or code to match disk: icon-1.webp, etc.
+const sanitizePath = (path: string) => {
+  if (!path) return '';
+  return path
+    .toLowerCase()
+    .replace(/ñ/g, 'n')
+    .replace(/\s+/g, '-')
+    .replace(/[()]/g, '')
+    .replace(/-+/g, '-');
+};
+
 const INITIAL_TESTIMONIALS: TestimonialType[] = [
   {
     id: 1,
@@ -23,7 +34,7 @@ const INITIAL_TESTIMONIALS: TestimonialType[] = [
     event: 'Recuerdos de Bautizo',
     stars: 5,
     text: 'Los recuerdos para el bautizo de mi hija quedaron preciosos. Se nota la dedicación en cada detalle elaborado y la elegancia del acabado.',
-    image: '/images/testimonios/icon-1.webp',
+    image: sanitizePath('/images/testimonios/icon-1.webp'),
   },
   {
     id: 2,
@@ -32,7 +43,7 @@ const INITIAL_TESTIMONIALS: TestimonialType[] = [
     event: 'Impresión UV Rígida',
     stars: 5,
     text: 'La impresión UV sobre MDF para nuestra señalización superó las expectativas. Los colores son vivos y la calidad del material es excepcional.',
-    image: '/images/testimonios/icon-2.webp',
+    image: sanitizePath('/images/testimonios/icon-2.webp'),
   },
   {
     id: 3,
@@ -41,7 +52,7 @@ const INITIAL_TESTIMONIALS: TestimonialType[] = [
     event: 'Imanes Turísticos',
     stars: 5,
     text: 'Compré una colección de imanes turísticos y a mis clientes les encantan. Diseños únicos y coleccionables con una nitidez impresionante.',
-    image: '/images/testimonios/icon-3.webp',
+    image: sanitizePath('/images/testimonios/icon-3.webp'),
   },
 ]
 
@@ -63,17 +74,6 @@ export default function Testimonials({ externalTestimonials = [] }: Testimonials
         if (response.ok) {
           const dbTestimonials = await response.json();
           
-          const sanitizePath = (path: string) => {
-            if (!path) return '';
-            // Match the files on disk: icon-1.webp, etc.
-            return path
-              .toLowerCase()
-              .replace(/ñ/g, 'n')
-              .replace(/\s+/g, '-')
-              .replace(/[()]/g, '')
-              .replace(/-+/g, '-');
-          };
-
           const formatted = dbTestimonials.map((t: any) => ({
             id: t._id,
             name: t.name,
@@ -84,12 +84,7 @@ export default function Testimonials({ externalTestimonials = [] }: Testimonials
             image: sanitizePath(t.avatar || t.image)
           }));
           
-          const sanitizedInitial = INITIAL_TESTIMONIALS.map(t => ({
-            ...t,
-            image: sanitizePath(t.image)
-          }));
-
-          setItems([...sanitizedInitial, ...formatted]);
+          setItems([...INITIAL_TESTIMONIALS, ...formatted]);
         } else {
           console.warn('Testimonials API returned non-ok status:', response.status);
         }

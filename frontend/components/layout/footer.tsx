@@ -130,7 +130,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-[#e8c96d10] flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-body text-xs text-[var(--text-dim)]">
+          <p className="text-body text-xs text-[var(--text-dim)]" suppressHydrationWarning>
             © {new Date().getFullYear()} León de Judá. Todos los derechos reservados.
           </p>
           
