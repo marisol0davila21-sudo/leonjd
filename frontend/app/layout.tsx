@@ -52,9 +52,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${playfair.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <head>
-        <Script
+        <script
           id="theme-strategy"
-          strategy="beforeInteractive"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function() {

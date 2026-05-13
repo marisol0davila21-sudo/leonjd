@@ -25,7 +25,7 @@ export default function ContactCTA() {
   return (
     <section
       id="contacto"
-      className="section-pad bg-[var(--bg-main)]"
+      className="section-pad bg-[var(--bg-main)] scroll-mt-12"
     >
       <div className="container-main">
         {/* Main CTA card */}

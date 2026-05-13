@@ -5,7 +5,7 @@ import { Menu, X, Phone, Sun, Moon, ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 
 const NAV_LINKS = [
-  { label: 'Inicio',     href: '/' },
+  { label: 'Inicio',     href: '#inicio' },
   { label: 'Servicios',  href: '/#servicios' },
   { label: 'Proceso',    href: '/#proceso' },
   { label: 'Galería',    href: '/#galeria' },
@@ -100,44 +100,40 @@ export default function Navbar() {
           </button>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center">
             <a
               href="https://wa.me/51906455032"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-sm font-bold px-6 py-2 rounded-full hover:bg-[#e8c96d] hover:text-black dark:hover:bg-white active:scale-95 transition-all duration-300"
+              className="bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-sm font-bold px-6 py-2 rounded-full hover:bg-[#e8c96d] hover:text-black dark:hover:bg-white active:scale-95 transition-all duration-300"
             >
               Contáctanos
             </a>
           </div>
 
-          {/* Mobile Menu Trigger - REDESIGNED FOR BOUTIQUE LOOK */}
+          {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden relative w-12 h-12 flex items-center justify-center rounded-full transition-all duration-500 overflow-hidden group ${
+            className={`lg:hidden relative w-12 h-12 flex items-center justify-center rounded-full transition-all duration-500 group ${
               menuOpen 
                 ? 'bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-black' 
-                : 'bg-white dark:bg-black/20 text-[var(--text-main)]'
+                : 'bg-white/80 dark:bg-black/20 text-[var(--text-main)] backdrop-blur-md border border-[#ede0c4] dark:border-white/10'
             }`}
           >
-            {/* Animated border effect similar to premium buttons */}
-            <div className={`absolute inset-0 border-2 rounded-full transition-all duration-500 ${
-              menuOpen ? 'border-[#e8c96d] scale-100' : 'border-[#ede0c4] dark:border-white/10 scale-90 group-hover:scale-100 group-hover:border-[#c9a84c]'
-            }`} />
-            
             <div className="relative z-10">
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </div>
           </button>
         </div>
       </nav>
 
+      {/* Mobile Menu Overlay */}
       <div 
-        className={`lg:hidden absolute top-24 right-4 w-[260px] bg-white/95 dark:bg-[#0c0c0c]/98 backdrop-blur-2xl rounded-[32px] border border-[#ede0c4] dark:border-white/10 transition-all duration-500 shadow-2xl ${
+        className={`lg:hidden absolute top-24 right-4 w-[280px] bg-white/95 dark:bg-[#0c0c0c]/98 backdrop-blur-2xl rounded-[32px] border border-[#ede0c4] dark:border-white/10 transition-all duration-500 shadow-2xl z-[60] ${
           menuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible pointer-events-none'
         }`}
       >
-        <div className="p-6 flex flex-col gap-1">
+        <div className="p-8 flex flex-col gap-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
@@ -145,20 +141,19 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className="group flex items-center justify-between py-3.5 border-b border-[#ede0c430] dark:border-white/5 last:border-none"
             >
-              <span className="text-body text-base font-bold text-[var(--text-main)] group-hover:text-[#c9a84c] transition-colors uppercase tracking-widest relative">
+              <span className="text-body text-base font-bold text-[var(--text-main)] group-hover:text-[#c9a84c] transition-colors relative">
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#c9a84c] transition-all group-hover:w-full" />
               </span>
-              <ChevronLeft size={14} className="rotate-180 text-[#c9a84c] opacity-0 group-hover:opacity-100 transition-all" />
             </a>
           ))}
           
-          <div className="mt-4">
+          <div className="mt-6 flex justify-center">
             <a
               href="https://wa.me/51906455032"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-sm font-bold px-6 py-2.5 rounded-full hover:bg-[#e8c96d] hover:text-black dark:hover:bg-white dark:hover:text-black active:scale-95 transition-all duration-300"
+              className="bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-sm font-bold px-8 py-2.5 rounded-full hover:bg-[#e8c96d] hover:text-black dark:hover:bg-white dark:hover:text-black active:scale-95 transition-all duration-300"
             >
               Contáctanos
             </a>

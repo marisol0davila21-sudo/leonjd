@@ -62,34 +62,34 @@ export default function Testimonials({ externalTestimonials = [] }: Testimonials
         const response = await fetch('/api/testimonials');
         if (response.ok) {
           const dbTestimonials = await response.json();
-          if (dbTestimonials.length > 0) {
-            // Helper to clean paths coming from DB or code
-            const sanitizePath = (path: string) => {
-              if (!path) return '';
-              return path
-                .toLowerCase()
-                .replace(/ñ/g, 'n')
-                .replace(/ /g, '-')
-                .replace(/[()]/g, '');
-            };
+          
+          const sanitizePath = (path: string) => {
+            if (!path) return '';
+            // Match the files on disk: icon-1.webp, etc.
+            return path
+              .toLowerCase()
+              .replace(/ñ/g, 'n')
+              .replace(/\s+/g, '-')
+              .replace(/[()]/g, '')
+              .replace(/-+/g, '-');
+          };
 
-            const formatted = dbTestimonials.map((t: any) => ({
-              id: t._id,
-              name: t.name,
-              role: t.role,
-              event: t.event,
-              stars: t.rating || t.stars,
-              text: t.content || t.text,
-              image: sanitizePath(t.avatar || t.image)
-            }));
-            
-            const sanitizedInitial = INITIAL_TESTIMONIALS.map(t => ({
-              ...t,
-              image: sanitizePath(t.image)
-            }));
+          const formatted = dbTestimonials.map((t: any) => ({
+            id: t._id,
+            name: t.name,
+            role: t.role,
+            event: t.event,
+            stars: t.rating || t.stars,
+            text: t.content || t.text,
+            image: sanitizePath(t.avatar || t.image)
+          }));
+          
+          const sanitizedInitial = INITIAL_TESTIMONIALS.map(t => ({
+            ...t,
+            image: sanitizePath(t.image)
+          }));
 
-            setItems([...sanitizedInitial, ...formatted]);
-          }
+          setItems([...sanitizedInitial, ...formatted]);
         } else {
           console.warn('Testimonials API returned non-ok status:', response.status);
         }
@@ -155,7 +155,7 @@ export default function Testimonials({ externalTestimonials = [] }: Testimonials
   return (
     <section
       id="testimonios"
-      className="section-pad bg-[#f5efe4] dark:bg-[#050505] transition-colors duration-500 overflow-x-hidden"
+      className="section-pad bg-[#f5efe4] dark:bg-[#050505] transition-colors duration-500 overflow-x-hidden scroll-mt-12"
     >
       <div className="container-main px-6 md:px-12 lg:px-20">
         {/* Header */}
@@ -257,6 +257,7 @@ function TestimonialCard({ t }: { t: TestimonialType }) {
               src={t.image} 
               alt={t.name} 
               fill 
+              unoptimized
               sizes="56px"
               className="object-cover" 
             />

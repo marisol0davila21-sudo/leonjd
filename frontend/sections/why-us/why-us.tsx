@@ -71,13 +71,6 @@ function StackedCarousel() {
           const isVisible = Math.abs(dist) <= 1
           const pos = dist === 0 ? 'center' : dist === 1 ? 'right' : dist === -1 ? 'left' : 'hidden'
 
-          // Clean path for URL safety
-          const sanitizedSrc = img.src
-            .toLowerCase()
-            .replace(/ñ/g, 'n')
-            .replace(/ /g, '-')
-            .replace(/[()]/g, '');
-
           return (
             <motion.div
               key={img.src}
@@ -97,9 +90,10 @@ function StackedCarousel() {
               className="absolute w-[180px] h-[260px] md:w-[220px] md:h-[320px] rounded-[40px] overflow-hidden border-[6px] border-white dark:border-stone-800 shadow-2xl"
             >
               <Image
-                src={sanitizedSrc}
+                src={img.src}
                 alt={img.alt}
                 fill
+                unoptimized
                 sizes="(max-width: 768px) 180px, 220px"
                 className="object-cover"
                 priority={pos === 'center'}
@@ -117,7 +111,7 @@ export default function WhyUs() {
   return (
     <section
       id="galeria"
-      className="section-pad overflow-hidden"
+      className="section-pad overflow-hidden scroll-mt-12"
       style={{ background: 'var(--bg-main)' }}
     >
       <div className="container-main">

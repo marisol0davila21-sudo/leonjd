@@ -61,7 +61,7 @@ export default function Process() {
   return (
     <section
       id="proceso"
-      className="section-pad relative overflow-hidden bg-[#f5efe4] dark:bg-[#050505] transition-colors duration-500"
+      className="section-pad relative overflow-hidden bg-[#f5efe4] dark:bg-[#050505] transition-colors duration-500 scroll-mt-12"
     >
       <div className="container-main relative z-10">
         <div className="max-w-2xl mx-auto text-center mb-20 md:mb-28">

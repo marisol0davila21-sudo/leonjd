@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex items-center pt-32 pb-16 px-4 overflow-hidden bg-[var(--bg-main)] transition-colors duration-300"
+      className="relative flex items-center pt-32 pb-16 px-4 overflow-hidden bg-[var(--bg-main)] transition-colors duration-300 scroll-mt-12"
     >
       <div className="container-main w-full">
         {/* Main Hero Card */}

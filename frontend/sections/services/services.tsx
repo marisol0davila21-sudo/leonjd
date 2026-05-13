@@ -57,7 +57,7 @@ export default function Services() {
   return (
     <section
       id="servicios"
-      className="section-pad bg-[#fdfaf5] dark:bg-[#050505] transition-colors duration-500"
+      className="section-pad bg-[#fdfaf5] dark:bg-[#050505] transition-colors duration-500 scroll-mt-12"
     >
       <div className="container-main">
         {/* Centered Header */}
