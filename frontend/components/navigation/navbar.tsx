@@ -111,16 +111,23 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Trigger - REDESIGNED */}
+          {/* Mobile Menu Trigger - REDESIGNED FOR BOUTIQUE LOOK */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 border-2 ${
+            className={`lg:hidden relative w-12 h-12 flex items-center justify-center rounded-full transition-all duration-500 overflow-hidden group ${
               menuOpen 
-                ? 'bg-[#1a1a1a] dark:bg-[#e8c96d] border-[#e8c96d] text-[#e8c96d] dark:text-black' 
-                : 'bg-white dark:bg-black/20 border-[#ede0c4] dark:border-white/10 text-[var(--text-main)]'
+                ? 'bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-black' 
+                : 'bg-white dark:bg-black/20 text-[var(--text-main)]'
             }`}
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            {/* Animated border effect similar to premium buttons */}
+            <div className={`absolute inset-0 border-2 rounded-full transition-all duration-500 ${
+              menuOpen ? 'border-[#e8c96d] scale-100' : 'border-[#ede0c4] dark:border-white/10 scale-90 group-hover:scale-100 group-hover:border-[#c9a84c]'
+            }`} />
+            
+            <div className="relative z-10">
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </div>
           </button>
         </div>
       </nav>
@@ -137,11 +144,14 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-display text-xl font-bold text-[var(--text-main)] hover:text-[#c9a84c] transition-colors flex items-center justify-between group"
+              className="text-display text-2xl font-bold text-[var(--text-main)] hover:text-[#c9a84c] transition-all flex items-center justify-between group py-2"
             >
-              {link.label}
-              <div className="w-8 h-8 rounded-full border border-[#ede0c4] dark:border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                <ChevronLeft size={14} className="rotate-180 text-[#c9a84c]" />
+              <div className="relative">
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#c9a84c] transition-all group-hover:w-full" />
+              </div>
+              <div className="w-10 h-10 rounded-full border border-[#ede0c4] dark:border-white/10 flex items-center justify-center group-hover:border-[#c9a84c] group-hover:bg-[#c9a84c10] transition-all">
+                <ChevronLeft size={16} className="rotate-180 text-[#c9a84c] group-hover:scale-110 transition-transform" />
               </div>
             </a>
           ))}

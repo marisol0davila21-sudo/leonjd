@@ -65,50 +65,68 @@ export default function ContactCTA() {
               </a>
             </div>
 
-            {/* Info cards */}
-            <div className="flex flex-col gap-5">
-              {[
-                {
-                  icon: MapPin,
-                  title: 'Ubicación',
-                  value: 'Lima, Perú',
-                  sub: 'Envíos garantizados a todo el país',
-                },
-                {
-                  icon: Clock,
-                  title: 'Horario de atención',
-                  value: 'Lun – Dom',
-                  sub: '9:00 am - 7:00 pm',
-                },
-                {
-                  icon: Phone,
-                  title: 'WhatsApp',
-                  value: '+51 906 455 032',
-                  sub: 'Respuesta en menos de 30 min',
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="group flex items-center gap-5 rounded-3xl px-6 py-5 bg-[#fcf9f2] dark:bg-white/5 border border-[#c9a84c15] dark:border-white/5 transition-all duration-300 hover:border-[#e8c96d50] hover:bg-white dark:hover:bg-[#111111]"
-                >
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-white dark:bg-[#1a1a1a] border border-[#e8c96d20] transition-all duration-300 group-hover:bg-[#e8c96d] group-hover:border-transparent">
-                    <item.icon 
-                      size={20} 
-                      strokeWidth={2} 
-                      className="text-[#e8c96d] transition-colors group-hover:text-black dark:group-hover:text-white" 
-                    />
-                  </div>
-                  <div>
-                    <p className="text-body text-[10px] text-[#9a7824] dark:text-[#e8c96d] uppercase tracking-widest font-bold mb-1">
-                      {item.title}
-                    </p>
-                    <p className="text-body text-base font-bold text-[var(--text-main)] mb-0.5">
-                      {item.value}
-                    </p>
-                    <p className="text-body text-xs text-[var(--text-dim)]">{item.sub}</p>
-                  </div>
+            {/* Info cards & Image Decoration */}
+            <div className="flex flex-col gap-8">
+              {/* Decorative Image for Contact */}
+              <div className="hidden lg:block relative h-48 w-full rounded-[32px] overflow-hidden border border-[#ede0c4] dark:border-white/10 group">
+                <Image 
+                  src="/images/Hombre/Matrimonio.webp" 
+                  alt="Decoración de eventos" 
+                  fill 
+                  sizes="(max-width: 1200px) 0px, 400px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+                  <p className="text-white text-xs font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    Calidad que perdura
+                  </p>
                 </div>
-              ))}
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {[
+                  {
+                    icon: MapPin,
+                    title: 'Ubicación',
+                    value: 'Lima, Perú',
+                    sub: 'Envíos garantizados a todo el país',
+                  },
+                  {
+                    icon: Clock,
+                    title: 'Horario de atención',
+                    value: 'Lun – Dom',
+                    sub: '9:00 am - 7:00 pm',
+                  },
+                  {
+                    icon: Phone,
+                    title: 'WhatsApp',
+                    value: '+51 906 455 032',
+                    sub: 'Respuesta en menos de 30 min',
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="group flex items-center gap-5 rounded-3xl px-6 py-4 bg-[#fcf9f2] dark:bg-white/5 border border-[#c9a84c15] dark:border-white/5 transition-all duration-300 hover:border-[#e8c96d50] hover:bg-white dark:hover:bg-[#111111]"
+                  >
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-white dark:bg-[#1a1a1a] border border-[#e8c96d20] transition-all duration-300 group-hover:bg-[#e8c96d] group-hover:border-transparent">
+                      <item.icon 
+                        size={18} 
+                        strokeWidth={2} 
+                        className="text-[#e8c96d] transition-colors group-hover:text-black dark:group-hover:text-white" 
+                      />
+                    </div>
+                    <div>
+                      <p className="text-body text-[9px] text-[#9a7824] dark:text-[#e8c96d] uppercase tracking-widest font-bold">
+                        {item.title}
+                      </p>
+                      <p className="text-body text-sm font-bold text-[var(--text-main)] leading-tight">
+                        {item.value}
+                      </p>
+                      <p className="text-[10px] text-[var(--text-dim)]">{item.sub}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
