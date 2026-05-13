@@ -107,7 +107,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-sm font-bold px-6 py-2 rounded-full hover:bg-[#e8c96d] hover:text-black dark:hover:bg-white active:scale-95 transition-all duration-300"
             >
-              Solicitar Cotización
+              Contáctanos
             </a>
           </div>
 
@@ -132,38 +132,35 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu - REDESIGNED */}
       <div 
-        className={`lg:hidden absolute top-24 left-4 right-4 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl rounded-[32px] border border-[#ede0c4] dark:border-white/10 transition-all duration-500 shadow-2xl ${
-          menuOpen ? 'opacity-100 translate-y-0 visible max-h-[600px]' : 'opacity-0 -translate-y-4 invisible max-h-0 overflow-hidden'
+        className={`lg:hidden absolute top-24 right-4 w-[260px] bg-white/95 dark:bg-[#0c0c0c]/98 backdrop-blur-2xl rounded-[32px] border border-[#ede0c4] dark:border-white/10 transition-all duration-500 shadow-2xl ${
+          menuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible pointer-events-none'
         }`}
       >
-        <div className="p-8 flex flex-col gap-5">
+        <div className="p-6 flex flex-col gap-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-display text-2xl font-bold text-[var(--text-main)] hover:text-[#c9a84c] transition-all flex items-center justify-between group py-2"
+              className="group flex items-center justify-between py-3.5 border-b border-[#ede0c430] dark:border-white/5 last:border-none"
             >
-              <div className="relative">
+              <span className="text-body text-base font-bold text-[var(--text-main)] group-hover:text-[#c9a84c] transition-colors uppercase tracking-widest relative">
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#c9a84c] transition-all group-hover:w-full" />
-              </div>
-              <div className="w-10 h-10 rounded-full border border-[#ede0c4] dark:border-white/10 flex items-center justify-center group-hover:border-[#c9a84c] group-hover:bg-[#c9a84c10] transition-all">
-                <ChevronLeft size={16} className="rotate-180 text-[#c9a84c] group-hover:scale-110 transition-transform" />
-              </div>
+              </span>
+              <ChevronLeft size={14} className="rotate-180 text-[#c9a84c] opacity-0 group-hover:opacity-100 transition-all" />
             </a>
           ))}
-          <div className="pt-4 border-t border-[#ede0c4] dark:border-white/5 mt-2">
+          
+          <div className="mt-4">
             <a
               href="https://wa.me/51906455032"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-gold-gradient text-black text-body text-base font-bold py-4 rounded-2xl shadow-[0_10px_20px_-10px_rgba(201,168,76,0.5)] active:scale-95 transition-all"
+              className="flex items-center justify-center gap-2 bg-[#1a1a1a] dark:bg-[#e8c96d] text-[#e8c96d] dark:text-[#111111] border-2 border-[#e8c96d] text-body text-sm font-bold px-6 py-2.5 rounded-full hover:bg-[#e8c96d] hover:text-black dark:hover:bg-white dark:hover:text-black active:scale-95 transition-all duration-300"
             >
-              <Phone size={18} />
-              Solicitar Cotización
+              Contáctanos
             </a>
           </div>
         </div>

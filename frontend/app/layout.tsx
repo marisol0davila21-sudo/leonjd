@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+import Navbar from "@/components/navigation/navbar";
+import Footer from "@/components/layout/footer";
+import FeedbackForm from "@/components/feedback/feedback-form";
+// import ScrollToTop from "@/components/ui/scroll-to-top";
 
 const playfair = Playfair_Display({
   variable: "--font-display",
@@ -45,22 +50,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="es"
-      className={`${playfair.variable} ${montserrat.variable}`}
-      suppressHydrationWarning
-    >
-      <body className="min-h-screen flex flex-col antialiased">
-        <script
-          id="theme-checker"
+    <html lang="es" className={`${playfair.variable} ${montserrat.variable}`} suppressHydrationWarning>
+      <head>
+        <Script
+          id="theme-strategy"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme');
-                  var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-                  if (!theme && supportDarkMode) theme = 'dark';
-                  if (theme === 'dark') {
+                  const savedTheme = localStorage.getItem('theme');
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                     document.documentElement.classList.add('dark');
                   } else {
                     document.documentElement.classList.remove('dark');
@@ -70,7 +71,15 @@ export default function RootLayout({
             `,
           }}
         />
-        {children}
+      </head>
+      <body className="min-h-screen flex flex-col antialiased">
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
+        {/* <ScrollToTop /> */}
+        <FeedbackForm />
       </body>
     </html>
   );

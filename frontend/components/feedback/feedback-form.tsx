@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MessageSquare, X, Star, Send, User, Image as ImageIcon } from 'lucide-react'
 
 interface FeedbackFormProps {
-  onAddTestimonial: (testimonial: any) => void
+  onAddTestimonial?: (testimonial: any) => void
 }
 
 export default function FeedbackForm({ onAddTestimonial }: FeedbackFormProps) {
@@ -39,6 +39,8 @@ export default function FeedbackForm({ onAddTestimonial }: FeedbackFormProps) {
       });
 
       if (response.ok) {
+        const data = await response.json()
+        onAddTestimonial?.(data)
         setSubmitted(true)
         setTimeout(() => {
           setIsOpen(false)
