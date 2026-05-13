@@ -21,16 +21,16 @@ export default function Hero() {
           {/* Background Images */}
           <div className="absolute inset-0 z-0">
               <div className="hidden md:block dark:hidden absolute inset-0">
-                <Image src="/images/Hero/Hero-web-light.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-left" priority />
+                <Image src="/images/hero/Hero-web-light.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-left" priority />
               </div>
               <div className="hidden md:dark:block absolute inset-0">
-                <Image src="/images/Hero/Hero-web-dark.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-left" priority />
+                <Image src="/images/hero/Hero-web-dark.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-left" priority />
               </div>
               <div className="md:hidden dark:hidden absolute inset-0">
-                <Image src="/images/Hero/Hero-mobile-light.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-top" priority />
+                <Image src="/images/hero/Hero-mobile-light.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-top" priority />
               </div>
               <div className="hidden dark:block md:dark:hidden absolute inset-0">
-                <Image src="/images/Hero/Hero-mobile-dark.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-top" priority />
+                <Image src="/images/hero/Hero-mobile-dark.webp" alt="Background" fill sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover object-top" priority />
               </div>
              <div className="absolute inset-0 bg-white/5 dark:bg-black/20" />
           </div>
